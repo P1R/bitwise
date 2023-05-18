@@ -3,6 +3,7 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 import "../src/Bitwise.sol";
+import {console} from "forge-std/console.sol";
 
 contract BitwiseTest is Test {
     
@@ -15,12 +16,13 @@ uint256 internal constant deValue = 10065148682515772150186587478593580137931935
     }
 
     function testMultiply() public {
+        vm.expectRevert(stdError.arithmeticError);
         bitwise.processX(deValue);
-        //assertEq(bitwise.x(), );
     }
 
     function testDivide() public {
         bitwise.processX(beValue);
-        //assertEq(bitwise.x(), );
+        //console.log("the X value is", bitwise.x());
+        assertEq(bitwise.x(), 21544368917623299268479875414962453224415152775201970820258377192130222086547);
     }
 }
